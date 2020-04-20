@@ -73,6 +73,12 @@ resource "aws_subnet" "public_subnet_eu_central_1b" {
   }
 }
 
+provisioner "remote-exec" {
+  inline = [
+    "sudo yum install git -y"
+  ]
+}
+
 
 /*
 resource "aws_security_group_rule" "allow_mysql" {
