@@ -18,7 +18,8 @@ resource "aws_instance" "instance" {
     connection {
       type = "ssh"
       user = "ec2-user"
-      host = aws_instance.instance.public_ip    }
+      host = aws_instance.instance.public_ip   
+    }
     inline = [
       "sudo yum install git -y"
     ]
