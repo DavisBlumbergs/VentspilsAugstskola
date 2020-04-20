@@ -15,6 +15,12 @@ resource "aws_instance" "instance" {
   key_name = "${aws_key_pair.key_pair.key_name}"
 
   provisioner "remote-exec" {
+    connection {
+      type = "ssh"
+      user = "ec2-user"
+      private_key = aws_key_pair.public_key
+      host = aws_instance.host.public_ip
+    }
     inline = [
       "sudo yum install git -y"
     ]
