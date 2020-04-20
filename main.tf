@@ -31,7 +31,7 @@ resource "aws_instance" "instance" {
 resource "aws_security_group" "allow_tls" {
   name = "allow_tls"
   description = "Allow TLS inbound traffic"
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
 
   ingress {
     from_port = 443
@@ -76,7 +76,7 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "public_subnet_eu_central_1b" {
-  vpc_id                  = "${aws_vpc.main.id}"
+  vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.0.0.0/24"
   map_public_ip_on_launch = true
   availability_zone = "eu-central-1b"
