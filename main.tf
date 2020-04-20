@@ -13,6 +13,12 @@ resource "aws_instance" "instance" {
   ami = "ami-076431be05aaf8080"
   instance_type = "t2.micro"
   key_name = "${aws_key_pair.key_pair.key_name}"
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo yum install git -y"
+    ]
+  }
 }
 
 //Security Groups
@@ -72,12 +78,6 @@ resource "aws_subnet" "public_subnet_eu_central_1b" {
   	Name =  "Subnet az 1b"
   }
 }
-
-  provisioner "remote-exec" {
-    inline = [
-      "sudo yum install git -y"
-    ]
-  }
 
 
 /*
