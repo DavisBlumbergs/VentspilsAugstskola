@@ -22,7 +22,7 @@ resource "aws_instance" "instance" {
       type = "ssh"
       user = "ec2-user"
       host = aws_instance.instance.public_ip
-      private_key = file("/var/lib/jenkins/workspace/secret.txt")
+      private_key = file("/var/lib/jenkins/workspace/secret.pem")
     }
     inline = [
       "sudo yum install git -y"
