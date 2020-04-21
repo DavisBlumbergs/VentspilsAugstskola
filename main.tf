@@ -13,6 +13,7 @@ resource "aws_instance" "instance" {
   ami = "ami-076431be05aaf8080"
   instance_type = "t2.micro"
   key_name = "QualificationProject"
+  vpc_security_group_ids = aws_security_group.allow_tls.id
   tags = {
     Name = "Web System"
   }
