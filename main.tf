@@ -30,6 +30,57 @@ resource "aws_instance" "instance" {
   }
 }
 
+resource "aws_security_group" "allow_tls" {
+    name        = "allow_tls"
+    description = "Allow TLS inbound traffic"
+    vpc_id      = "${aws_vpc.main.id}"
+
+    ingress {
+      # TLS (change to whatever ports you need)
+      from_port     = 443
+      to_port       = 443
+      protocol      = "tcp"
+      cidr_blocks   = ["0.0.0.0/24"]
+    }
+
+    egress {
+      from_port     = 0
+      to_port       = 0
+      protocol      = "-1"
+      cidr_blocks   = ["172.17.0.0/16"]
+    }
+}
+
+    #SSH
+  resource "aws_security_group_rule" "allow_ssh" {
+    type = "ingress"
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/32"]
+    security_group_id = aws_security_group.allow_tls.id
+  }
+
+    #HTTP
+  resource "aws_security_group_rule" "allow_http" {
+    type              = "ingress"
+    from_port         = 80
+    to_port           = 80
+    protocol          = "tcp"
+    cidr_blocks       = ["172.17.0.0/16"]
+    security_group_id = aws_security_group.allow_tls.id
+  }
+
+    #Port_8080
+  resource "aws_security_group_rule" "allow_8080" {
+    type              = "ingress"
+    from_port         = 8080
+    to_port           = 8080
+    protocol          = "tcp"
+    cidr_blocks       = ["172.17.0.0/16"]
+    security_group_id = aws_security_group.allow_tls.id
+  }
+
 resource "aws_vpc" "main" {
   cidr_block = "172.17.0.0/16"
   enable_dns_support = true
@@ -110,7 +161,7 @@ resource "aws_alb_target_group" "testTarget" {
 
 resource "aws_alb_target_group_attachment" "test" {
     target_group_arn = "${aws_alb_target_group.testTarget.arn}"
-    target_id = "${aws_instance.instance1.id}"
+    target_id = "${aws_instance.instance.id}"
     port = 22
 }
 
