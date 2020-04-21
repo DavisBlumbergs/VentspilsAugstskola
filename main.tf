@@ -90,14 +90,3 @@ resource "aws_vpc" "main" {
     Name = "MainVPC"
   }
 }
-
-#Configure Subnet
-resource "aws_subnet" "public_subnet_eu_central_1b" {
-  vpc_id                  = aws_vpc.main.id
-  cidr_block              = "10.0.0.0/24"
-  map_public_ip_on_launch = true
-  availability_zone = "eu-central-1a"
-  tags = {
-  	Name =  "Subnet az 1a"
-  }
-}
