@@ -13,6 +13,9 @@ resource "aws_instance" "instance" {
   ami = "ami-076431be05aaf8080"
   instance_type = "t2.micro"
   key_name = "QualificationProject"
+  tags = {
+    Name = "Web System"
+  }
 
   provisioner "remote-exec" {
     connection {
