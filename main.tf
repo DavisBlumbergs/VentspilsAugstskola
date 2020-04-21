@@ -47,7 +47,7 @@ resource "aws_security_group" "allow_tls" {
       from_port     = 0
       to_port       = 0
       protocol      = "-1"
-      cidr_blocks   = ["172.17.0.0/16"]
+      cidr_blocks   = ["0.0.0.0/16"]
     }
 }
 
@@ -67,7 +67,7 @@ resource "aws_security_group" "allow_tls" {
     from_port         = 80
     to_port           = 80
     protocol          = "tcp"
-    cidr_blocks       = ["172.17.0.0/16"]
+    cidr_blocks       = ["0.0.0.0/16"]
     security_group_id = aws_security_group.allow_tls.id
   }
 
@@ -77,12 +77,12 @@ resource "aws_security_group" "allow_tls" {
     from_port         = 8080
     to_port           = 8080
     protocol          = "tcp"
-    cidr_blocks       = ["172.17.0.0/16"]
+    cidr_blocks       = ["0.0.0.0/16"]
     security_group_id = aws_security_group.allow_tls.id
   }
 
 resource "aws_vpc" "main" {
-  cidr_block = "172.17.0.0/16"
+  cidr_block = "10.0.0.0/16"
   enable_dns_support = true
   enable_dns_hostnames = true
   tags = {
@@ -93,7 +93,7 @@ resource "aws_vpc" "main" {
 #Configure Subnet
 resource "aws_subnet" "public_subnet_eu_central_1b" {
   vpc_id                  = "${aws_vpc.main.id}"
-  cidr_block              = "172.17.1.0/24"
+  cidr_block              = "10.0.0.0/24"
   map_public_ip_on_launch = true
   availability_zone = "eu-central-1b"
   tags = {
@@ -103,7 +103,7 @@ resource "aws_subnet" "public_subnet_eu_central_1b" {
 
 resource "aws_subnet" "private_1_subnet_eu_central_1b" {
   vpc_id                  = "${aws_vpc.main.id}"
-  cidr_block              = "172.17.2.0/24"
+  cidr_block              = "10.0.0.0/24"
   availability_zone = "eu-central-1b"
   tags = {
   	Name =  "Subnet private 1 az 1b"
@@ -112,7 +112,7 @@ resource "aws_subnet" "private_1_subnet_eu_central_1b" {
 
 resource "aws_subnet" "private_2_subnet_eu_central_1b" {
   vpc_id                  = "${aws_vpc.main.id}"
-  cidr_block              = "172.17.3.0/24"
+  cidr_block              = "10.0.0.0/24"
   availability_zone = "eu-central-1b"
   tags = {
   	Name =  "Subnet private 2 az 1b"
