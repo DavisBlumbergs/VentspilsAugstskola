@@ -101,12 +101,3 @@ resource "aws_subnet" "public_subnet_eu_central_1b" {
   	Name =  "Subnet az 1b"
   }
 }
-
-resource "aws_subnet" "private_1_subnet_eu_central_1b" {
-  vpc_id                  = aws_vpc.main.id
-  cidr_block              = "10.0.0.0/24"
-  availability_zone = "eu-central-1b"
-  tags = {
-  	Name =  "Subnet private 1 az 1b"
-  }
-}
