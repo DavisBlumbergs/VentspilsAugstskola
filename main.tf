@@ -28,8 +28,8 @@ resource "aws_instance" "instance" {
     }
     inline = [
       "sudo yum install git -y",
-      "sudo amazon-linux-extras install docker -y",
       "sudo service docker start",
+      "sudo amazon-linux-extras install docker -y",
       "sudo usermod -a -G docker ec2-user",
       "docker info"
     ]
