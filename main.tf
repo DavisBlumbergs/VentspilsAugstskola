@@ -13,10 +13,11 @@ resource "aws_instance" "instance" {
   ami = "ami-076431be05aaf8080"
   instance_type = "t2.micro"
   key_name = "QualificationProject"
-  vpc_security_group_ids = ["${aws_security_group.allow_tls.id}"]
+  vpc_security_group_ids = [aws_security_group.allow_tls.id]
   tags = {
     Name = "Web System"
   }
+  subnet_id = aws_subnet.subnet1.id
 
   provisioner "remote-exec" {
     connection {
@@ -31,62 +32,53 @@ resource "aws_instance" "instance" {
   }
 }
 
-resource "aws_security_group" "allow_tls" {
-    name        = "allow_tls"
-    description = "Allow TLS inbound traffic"
-    vpc_id      = aws_vpc.main.id
-
-    ingress {
-      # TLS (change to whatever ports you need)
-      from_port     = 443
-      to_port       = 443
-      protocol      = "tcp"
-      cidr_blocks   = ["0.0.0.0/24"]
-    }
-
-    egress {
-      from_port     = 0
-      to_port       = 0
-      protocol      = "-1"
-      cidr_blocks   = ["0.0.0.0/16"]
-    }
+resource "aws_vpc" "main" {
+  cidr_block = "10.0.0.0/16"
+  enable_dns_hostnames = true
+  enable_dns_support = true
 }
 
-    #SSH
-  resource "aws_security_group_rule" "allow_ssh" {
-    type = "ingress"
+resource "aws_eip" "ip-test-env" {
+  instance = aws_instance.instance.id
+  vpc      = true
+}
+
+resource "aws_internet_gateway" "test-env-gw" {
+  vpc_id = aws_vpc.main.id
+}
+
+resource "aws_subnet" "subnet1" {
+  cidr_block = cidrsubnet(aws_vpc.main.cidr_block, 3, 1)
+  vpc_id = aws_vpc.main.id
+  availability_zone = "eu-central-1a"
+}
+
+resource "aws_security_group" "ingress-all-test" {
+  name = "allow-all-sg"
+  vpc_id = aws_vpc.main.id
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
     from_port = 22
     to_port = 22
     protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/32"]
-    security_group_id = aws_security_group.allow_tls.id
   }
-
-    #HTTP
-  resource "aws_security_group_rule" "allow_http" {
-    type              = "ingress"
-    from_port         = 80
-    to_port           = 80
-    protocol          = "tcp"
-    cidr_blocks       = ["0.0.0.0/16"]
-    security_group_id = aws_security_group.allow_tls.id
-  }
-
-    #Port_8080
-  resource "aws_security_group_rule" "allow_8080" {
-    type              = "ingress"
-    from_port         = 8080
-    to_port           = 8080
-    protocol          = "tcp"
-    cidr_blocks       = ["0.0.0.0/16"]
-    security_group_id = aws_security_group.allow_tls.id
-  }
-
-resource "aws_vpc" "main" {
-  cidr_block = "10.0.0.0/16"
-  enable_dns_support = true
-  enable_dns_hostnames = true
-  tags = {
-    Name = "MainVPC"
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+resource "aws_route_table" "route-table-test-env" {
+  vpc_id = aws_vpc.main.id
+route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.test-env-gw.id
+  }
+}
+resource "aws_route_table_association" "subnet-association" {
+  subnet_id      = aws_subnet.subnet1.id
+  route_table_id = aws_route_table.route-table-test-env.id
+}
+
