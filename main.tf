@@ -87,17 +87,3 @@ resource "aws_subnet" "public_subnet_eu_central_1b" {
   	Name =  "Subnet az 1b"
   }
 }
-
-
-/*
-resource "aws_security_group_rule" "allow_mysql" {
-  type = "ingress"
-  from_port = 3306
-  to_port = 3306
-  protocol = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
-}
-*/
-
-
-
