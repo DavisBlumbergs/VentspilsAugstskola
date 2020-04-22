@@ -14,6 +14,8 @@ resource "aws_instance" "instance" {
   instance_type = "t2.micro"
   key_name = "QualificationProject"
   vpc_security_group_ids = [aws_security_group.ingress-all-test.id]
+  subnet_id = aws_subnet.subnet1.id
+  associate_public_ip_address = "true"
   tags = {
     Name = "Web System"
   }
