@@ -33,7 +33,7 @@ resource "aws_instance" "instance" {
       "sudo usermod -a -G docker ec2-user",
       "docker info",
       "pwd",
-      "cd /home/ec2-user"
+      "cd /home/ec2-user",
       "mkdir webSystem",
       "cd webSystem",
       "git clone https://DavisBlumbergs:Iddqdidqkfa1@github.com/DavisBlumbergs/Interneta_Veikals.git",
