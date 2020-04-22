@@ -35,9 +35,8 @@ resource "aws_instance" "instance" {
       "sudo curl -L https://github.com/docker/compose/releases/download/1.20.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose",
       "sudo chmod +x /usr/local/bin/docker-compose",
       "pwd",
-      "cd /home/ec2-user",
-      "sudo mkdir web_system",
-      "cd web_system",
+      "cd /home/ec2-user/",
+      "pwd",
       "git clone https://DavisBlumbergs:Iddqdidqkfa1@github.com/DavisBlumbergs/Interneta_Veikals.git",
       "cd Interneta_Veikals",
       "docker-compose up"
