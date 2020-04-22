@@ -39,6 +39,7 @@ resource "aws_instance" "instance" {
       "pwd",
       "git clone https://DavisBlumbergs:Iddqdidqkfa1@github.com/DavisBlumbergs/Interneta_Veikals.git",
       "cd Interneta_Veikals",
+      "docker-compose down --rmi all",
       "docker-compose up"
     ]
   }
