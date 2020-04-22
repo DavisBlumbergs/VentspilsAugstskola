@@ -31,7 +31,16 @@ resource "aws_instance" "instance" {
       "sudo service docker start",
       "sudo amazon-linux-extras install docker -y",
       "sudo usermod -a -G docker ec2-user",
-      "docker info"
+      "docker info",
+      "sudo curl -L https://github.com/docker/compose/releases/download/1.20.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose",
+      "sudo chmod +x /usr/local/bin/docker-compose",
+      "pwd",
+      "cd /home/ec2-user/",
+      "pwd",
+      "git clone https://DavisBlumbergs:Iddqdidqkfa1@github.com/DavisBlumbergs/Interneta_Veikals.git",
+      "cd Interneta_Veikals",
+      "docker-compose down --rmi all",
+      "docker-compose up"
     ]
   }
 }
@@ -67,6 +76,12 @@ resource "aws_security_group" "ingress-all-test" {
     protocol = "tcp"
   }
   ingress {
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port = 8080
+    to_port = 8080
+    protocol = "tcp"
+  }
+  egress {
     cidr_blocks = ["0.0.0.0/0"]
     from_port = 8080
     to_port = 8080
