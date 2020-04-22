@@ -31,7 +31,14 @@ resource "aws_instance" "instance" {
       "sudo service docker start",
       "sudo amazon-linux-extras install docker -y",
       "sudo usermod -a -G docker ec2-user",
-      "docker info"
+      "docker info",
+      "pwd",
+      "cd /home/ec2-user"
+      "mkdir webSystem",
+      "cd webSystem",
+      "git clone https://DavisBlumbergs:Iddqdidqkfa1@github.com/DavisBlumbergs/Interneta_Veikals.git",
+      "cd Interneta_Veikals",
+      "docker-compose up"
     ]
   }
 }
