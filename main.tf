@@ -38,6 +38,7 @@ resource "aws_instance" "instance" {
       "cd VentspilsAugstskola",
       "git checkout web",
       "cd demo",
+      "sudo systemctl start docker",
       "/usr/local/bin/docker-compose up"
     ]
   }
