@@ -40,7 +40,7 @@ resource "aws_instance" "instance" {
       "cd VentspilsAugstskola",
       "git checkout web",
       "cd demo",
-      "/usr/local/bin/docker-compose up"
+      "docker-compose up"
     ]
   }
 }
