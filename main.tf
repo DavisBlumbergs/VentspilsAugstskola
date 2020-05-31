@@ -40,6 +40,7 @@ resource "aws_instance" "instance" {
       "git clone https://DavisBlumbergs:Iddqdidqkfa1@github.com/DavisBlumbergs/VentspilsAugstskola.git",
       "git checkout web",
       "cd VentspilsAugstskola",
+      "pwd",
       "cd demo",
       "docker-compose down --rmi all",
       "docker-compose up"
