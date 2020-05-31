@@ -35,7 +35,7 @@ resource "aws_instance" "instance" {
       "sudo chmod +x /usr/local/bin/docker-compose",
       "pwd",
       "docker info",
-      "sudo service docker start",
+      "sudo service /var/lib/docker start",
       "cd /home/ec2-user/",
       "git clone https://DavisBlumbergs:Iddqdidqkfa1@github.com/DavisBlumbergs/VentspilsAugstskola.git",
       "cd VentspilsAugstskola",
