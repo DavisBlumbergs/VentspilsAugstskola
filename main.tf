@@ -41,7 +41,6 @@ resource "aws_instance" "instance" {
       "cd VentspilsAugstskola",
       "git checkout web",
       "cd demo",
-      "sudo service docker start",
       "docker-compose build",
       "docker-compose down --rmi all",
       "docker-compose up"
