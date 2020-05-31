@@ -41,6 +41,7 @@ resource "aws_instance" "instance" {
       "cd demo",
       "sudo systemctl start docker.service",
       "sudo service docker status",
+      "sudo chown -R $USER .",
       "/usr/local/bin/docker-compose up"
     ]
   }
