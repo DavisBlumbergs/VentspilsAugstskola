@@ -42,6 +42,7 @@ resource "aws_instance" "instance" {
       "git checkout web",
       "pwd",
       "cd demo",
+      "sudo service docker start",
       "docker-compose down --rmi all",
       "docker-compose up"
     ]
