@@ -41,6 +41,7 @@ resource "aws_instance" "instance" {
       "git checkout web",
       "cd demo",
       "sudo systemctl start docker.service",
+      "echo gonna try again",
       "/usr/local/bin/docker-compose create",
       "/usr/local/bin/docker-compose start"
     ]
