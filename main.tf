@@ -41,10 +41,8 @@ resource "aws_instance" "instance" {
       "git checkout web",
       "cd demo",
       "echo starting the service",
-      "sudo service docker status",
       "sudo service docker start",
-      "docker-compose build",
-      "docker-compose down --rmi all",
+      "sudo service docker status",
       "docker-compose up"
     ]
   }
