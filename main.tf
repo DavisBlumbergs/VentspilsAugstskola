@@ -39,7 +39,7 @@ resource "aws_instance" "instance" {
       "cd /home/ec2-user/",
       "pwd",
       "git clone https://DavisBlumbergs:Iddqdidqkfa1@github.com/DavisBlumbergs/VentspilsAugstskola.git",
-      "git checkout web"
+      "git checkout web",
       "cd demo",
       "docker-compose down --rmi all",
       "docker-compose up"
