@@ -36,12 +36,11 @@ resource "aws_instance" "instance" {
       "sudo chmod 777 /usr/local/bin/docker-compose",
       "cd /home/ec2-user/",
       "git clone https://DavisBlumbergs:Iddqdidqkfa1@github.com/DavisBlumbergs/VentspilsAugstskola.git",
+      "sudo chmod 777 /home/ec2-user/VentspilsAugstskola/demo/",
       "cd VentspilsAugstskola",
       "git checkout web",
       "cd demo",
       "sudo systemctl start docker.service",
-      "sudo service docker status",
-      "docker-compose version",
       "/usr/local/bin/docker-compose create",
       "/usr/local/bin/docker-compose start"
     ]
