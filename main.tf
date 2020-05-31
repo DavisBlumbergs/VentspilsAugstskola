@@ -42,7 +42,8 @@ resource "aws_instance" "instance" {
       "sudo systemctl start docker.service",
       "sudo service docker status",
       "docker-compose version",
-      "/usr/local/bin/docker-compose up"
+      "/usr/local/bin/docker-compose create",
+      "/usr/local/bin/docker-compose start"
     ]
   }
 }
