@@ -42,7 +42,7 @@ resource "aws_instance" "instance" {
       "cd demo",
       "sudo systemctl start docker.service",
       "echo gonna try again",
-      "docker-compose up"
+      "/usr/bin/docker-compose up"
     ]
   }
 }
