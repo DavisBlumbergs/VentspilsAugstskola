@@ -38,8 +38,9 @@ resource "aws_instance" "instance" {
       "docker info",
       "cd /home/ec2-user/",
       "pwd",
-      "git clone https://DavisBlumbergs:Iddqdidqkfa1@github.com/DavisBlumbergs/Interneta_Veikals.git",
-      "cd Interneta_Veikals",
+      "git clone https://DavisBlumbergs:Iddqdidqkfa1@github.com/DavisBlumbergs/VentspilsAugstskola.git",
+      "git checkout web"
+      "cd demo",
       "docker-compose down --rmi all",
       "docker-compose up"
     ]
