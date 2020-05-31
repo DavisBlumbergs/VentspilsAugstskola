@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Add Product</title>
+        
+       	<style>
+        	html {
+        		background: whitesmoke;
+        	}
+        	
+        	body .LoginForm {
+        		position: center;
+        		width: 70%;
+        		margin: auto;
+        	}
+        	
+        	body .LoginForm table {
+        		position: center;
+        		border: 2px solid;
+        		margin: auto;
+        	}
+        </style>
+    </head>
+
+    <body>
+    
+    	<form action="#" th:action="@{/admin/addProduct}" th:object="${product}" method = "post">
+    		<table border = "1">
+    		
+    			<tr>
+    				<td> 
+    					<label th:text = "Name"> </label>
+						<input type = "text" th:field="*{name}"/> 
+					</td>
+    				<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"> </td>
+    			</tr>
+    			
+	    		<tr>
+	    			<td>
+	    				<label th:text ="Type"></label>
+		    			<select th:name="productType" th:value="${productType}">
+                            <option th:each ="type : ${types}"
+                                    th:value ="${type}"
+                                    th:text ="${type}">
+                            </option>
+                        </select>
+	    			</td>
+	    		</tr>
+
+	    		<tr>
+	    			<td>
+	    				<label th:text ="Color"></label>
+	    				<input type ="text" th:name = "color"  th:value="${color}"/>
+	    			</td>
+	    			
+	    			<td th:if="${#fields.hasErrors('color')}" th:errors="*{color}"> </td>
+	    		</tr>
+	    		
+	    		<tr>
+	    			<td>
+	    				<label th:text ="Material"></label>
+	    				<input type ="text" th:name = "material"  th:value="${material}"/>
+	    			</td>
+	    			
+	    			<td th:if="${#fields.hasErrors('material')}" th:errors="*{material}"> </td>
+	    		</tr>
+	    		  
+	    		<tr>
+	    			<td>
+	    				<label th:text ="Description"></label>
+	    				<input type ="text" th:name = "description"  th:value="${description}"/>
+	    			</td>
+	    		</tr>
+	    		
+	    		<tr>
+	    			<td>
+	    				<label th:text ="Count"></label>
+	    				<input type ="text" th:name ="count" th:value="${count}"/>
+	    			</td>
+	    			
+	    			<td th:if="${#fields.hasErrors('count')}" th:errors="*{count}"> </td>
+	    		</tr>
+   				    		 
+	    	</table>
+    			
+			<button type="submit" value="Submit">Submit</button>
+    	</form>
+    </body>
+
+</html>

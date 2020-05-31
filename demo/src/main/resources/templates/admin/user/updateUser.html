@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Update User</title>	
+	</head>
+
+	<body>
+		<div class="container">
+		    <div class="page-header">
+		        <h1> Update User </h1>
+		    </div>
+		    
+		    <form action="#" th:action="@{/admin/updateUser/__${id}__}" th:object="${user}" method="post">
+		    	<h3>User Data</h3>
+		    	<table border ="1">
+		    		
+		    		<tr>
+		    			<td>
+							<input type="text" name="username" th:value="${oldUser.username}"/>
+						</td>
+						<td th:if="${#fields.hasErrors('username')}" th:errors="*{username}"> </td>
+		    		</tr>
+		    		
+		    		<tr> 
+		    			<td> 
+							<input type="password" name="password"/>	
+						</td>
+						<td th:if="${#fields.hasErrors('password')}" th:errors="*{password}"> </td>
+		    		</tr>
+
+					<tr>
+						<td>
+							<label th:text ="Role"></label>
+							<select th:name="role">
+								<option  value="false">User</option>
+								<option  value="true">Admin</option>
+							</select>
+						</td>
+						
+						<td th:if="${#fields.hasErrors('role')}" th:errors="*{role}"> </td>
+					</tr>
+		    	</table>
+				<button type ="submit" value ="Submit">Update</button>	
+		    </form>
+		</div>
+	</body>
+</html>

@@ -11,6 +11,7 @@ import com.example.WEB.models.User;
 @Repository
 public interface UserRepo extends CrudRepository<User, Long> {
 	
+	boolean existsByUsername(String username);
 	User findByUsername(String username);
 	List<User> findByRole(boolean isAdmin);
 	User findByPerson(Person person);

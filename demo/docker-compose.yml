@@ -2,17 +2,20 @@ version: '3'
 
 services:
   store-database:
-    container_name: WebStore-Databse
+    container_name: WebStore-Database
     image: mysql/mysql-server:5.7
     environment:
-      MYSQL_DATABASE: WebStore
+      MYSQL_DATABASE: Store-Database
       MYSQL_ROOT_PASSWORD: 29426030
       MYSQL_ROOT_HOST: '%'
     ports:
-    - "3306:3306"
-    restart: always
+    - 3306:3306
+    expose:
+    - 3306
 
-  WebStore-System:
+  webstore-system:
+    depends_on:
+    - store-database
     build: .
     volumes:
     - .:/app
@@ -21,5 +24,3 @@ services:
     ports:
     - 8080:8080
     command: mvn clean spring-boot:run
-    depends_on:
-    - store-database

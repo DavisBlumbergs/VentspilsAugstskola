@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Update User</title>
+	</head>
+	
+	<body>
+		<div class="container">
+			<div class ="header">
+				<h1> Update User </h1>
+			</div>
+			
+			<div class="userData">
+				<form action="#" th:action="@{/admin/selectUserUpdate}" th:object="${user}" method="post">
+					<label th:text="Users"></label>
+					<select th:field = "*{u_id}">
+						<option th:each = "us : ${allUsers}"
+								th:text = "${us.u_id} + ':  ' + ${us.username}"
+								th:value = "${us.u_id}">
+						</option>
+					</select>
+					
+					<button type = "submit" value = "Submit">Update</button>
+				</form>
+			</div>
+			
+		</div>
+	</body>
+	
+</html>

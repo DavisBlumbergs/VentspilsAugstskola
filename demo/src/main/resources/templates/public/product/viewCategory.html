@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>View Category</title>
+	</head>
+	
+	<body>
+		<div class="container">
+			<div class ="header">
+				<h1>Select Category</h1>
+			</div>
+			
+			<div th:object="${product}">
+				<table border = "1">
+					<tr>
+						<td>Product Name</td>
+						<td>Available</td>
+					</tr>
+					<tr th:each="prod:${products}">
+						<td th:text="${prod.name}"></td>
+						<td th:text="${prod.count}"> </td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+	
+</html>

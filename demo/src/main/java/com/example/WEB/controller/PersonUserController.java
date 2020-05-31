@@ -17,6 +17,8 @@ import com.example.WEB.models.Person;
 import com.example.WEB.models.User;
 import com.example.WEB.repos.PersonRepo;
 import com.example.WEB.repos.UserRepo;
+import com.example.WEB.services.PersonServImpl;
+import com.example.WEB.services.UserServImpl;
 
 @Controller
 public class PersonUserController {
@@ -25,22 +27,13 @@ public class PersonUserController {
 	PersonRepo personRepo;
 	
 	@Autowired
+	PersonServImpl personService;
+	
+	@Autowired
 	UserRepo userRepo;
 	
-	@GetMapping("/test")
-	public String test(User user, Model model) {
-		Person adminPerson = new Person("Davis", "Blumbergs",24,Gender.Male,"Latvia","davisblumb@gmail.com");
-		Person userPerson = new Person("Raitis", "Brasmanis",25,Gender.Male,"Latvia", "maxcape@inbox.lv");
-		personRepo.save(adminPerson);
-		personRepo.save(userPerson);
-		
-		User admin = new User("admininins", "administrator", adminPerson, true);
-		User users = new User("useritis","userstrator", userPerson);
-		userRepo.save(admin);
-		userRepo.save(users);
-		
-		return "test";
-	}
+	@Autowired
+	UserServImpl userService;
 	
 	@GetMapping("/register")
 	public String register(User user, Model model) {
@@ -51,8 +44,7 @@ public class PersonUserController {
 	
 	@PostMapping("/register")
 	public String processRegister(@Valid User user, Model model, BindingResult res) throws IOException {
-		System.out.println("Hello " + user.getUsername());
-		
+
 		if(userRepo.findByUsername(user.getUsername()) != null) {
 			model.addAttribute("types", Gender.values());
 			res.addError(new FieldError("user", "username", "this username already exists"));
@@ -90,8 +82,10 @@ public class PersonUserController {
         						 user.getPassword(),
         						 tempPerson);
         
-        personRepo.save(tempPerson);
-        userRepo.save(tempUser);
+        personService.addNewPerson(tempPerson);
+        userService.addNewUser(tempUser);
+        
+        System.out.println("Hello " + user.getUsername());
         
 		return "redirect:/login";
 	}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Update Person</title>	
+	</head>
+
+	<body>
+		<div class="container">
+		    <div class="page-header">
+		        <h1> Update Person </h1>
+		    </div>
+		    
+		    <form action="#" th:action="@{/admin/updatePerson/__${id}__}" th:object="${person}" method="post">
+		    	<h3>Person Data</h3>
+		    	<table border ="1">
+		    		<tr>
+		    			<td>
+		    				<label th:text ="Name"></label>
+		    				<input type ="text" th:name ="name" th:value ="${oldPerson.name}"/>
+		    			</td>
+		    			
+		    			<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"> </td>
+		    		</tr>
+		    		
+		    		<tr>
+		    			<td>
+		    				<label th:text ="Surname"></label>
+		    				<input type ="text" th:name = "surname"  th:value="${oldPerson.surname}"/>
+		    			</td>
+		    			
+		    			<td th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"> </td>
+		    		</tr>
+		    		
+		    		<tr>
+		    			<td>
+		    				<label th:text ="Age"></label>
+		    				<input type ="text" th:name ="age" th:value="${oldPerson.age}"/>
+		    			</td>
+		    			
+		    			<td th:if="${#fields.hasErrors('age')}" th:errors="*{age}"> </td>
+		    		</tr>
+		    		
+		    		<tr>
+		    			<td>
+		    				<label th:text ="Gender"></label>
+			    			<select th:name="gender" th:value="${oldPerson.gender}">
+	                            <option th:each ="type : ${genderTypes}"
+	                                    th:value ="${type}"
+	                                    th:text ="${type}">
+	                            </option>
+	                        </select>
+		    			</td>
+		    		</tr>
+		    		
+		    		<tr>
+		    			<td>
+		    				<label th:text ="Country"></label>
+		    				<input type ="text" th:name ="country" th:value="${oldPerson.country}"/>
+		    			</td>
+		    			
+		    			<td th:if="${#fields.hasErrors('country')}" th:errors="*{country}"> </td>
+		    		</tr>
+		    		
+		    		<tr>
+		    			<td>
+		    				<label th:text ="E-Mail"></label>
+		    				<input type ="text" th:name ="email" th:value="${oldPerson.email}"/>
+		    			</td>
+		    			
+		    			<td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"> </td>
+		    		</tr>    				    		 
+		    	</table>
+				<button type ="submit" value ="Submit">Update</button>	
+		    </form>
+		</div>
+	</body>
+</html>

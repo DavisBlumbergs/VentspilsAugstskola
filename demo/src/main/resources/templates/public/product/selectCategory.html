@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Select Category</title>
+	</head>
+	
+	<body>
+		<div class="container">
+			<div class ="header">
+				<h1>Select Category</h1>
+			</div>
+			
+			<form action="#" th:action="@{/products/selectCategory}" th:object="${product}" method="post">
+				<label th:text="SelectCategory"></label>
+				<select  th:field = "*{productType}">
+					<option th:each="type:${productTypes}"
+							th:text="${type}"
+							th:value="${type}">
+					</option>
+				</select>
+				
+				<button type="submit" value="submit">Choose</button>
+			</form>
+			
+			
+			<form th:if="${principal}" th:action="@{/logout}" method="post" >
+
+    <button type="submit" class="btn btn-primary mb-2">Sing out</button>
+
+</form>
+<form th:unless="${principal}" th:action="@{/login}" method="post" >
+
+    <button type="submit" class="btn btn-primary mb-2">Sing in</button>
+
+</form>			
+		</div>
+	</body>
+	
+</html>

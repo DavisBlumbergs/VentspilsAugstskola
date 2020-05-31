@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Delete Product</title>
+	</head>
+	
+	<body>
+		<div class="container">
+			<div class ="header">
+				<h1> Delete Product </h1>
+			</div>
+			
+			<div class="userData">
+				<form action="#" th:action="@{/admin/selectProductDelete}" th:object="${product}" method="post">
+					<label th:text="Products"></label>
+					<select th:field = "*{prod_id}">
+						<option th:each = "prod : ${allProducts}"
+								th:text = "${prod.prod_id} + ':  ' + ${prod.productType} + ' ' + ${prod.name} + ' ' + ${prod.count}"
+								th:value = "${prod.prod_id}">
+						</option>
+					</select>
+					
+					<button type = "submit" value = "Submit">Delete</button>
+				</form>
+			</div>
+			
+		</div>
+	</body>
+	
+</html>

@@ -2,6 +2,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Register</title>
+        
+       	<style>
+        	html {
+        		background: whitesmoke;
+        	}
+        	
+        	body .LoginForm {
+        		position: center;
+        		width: 70%;
+        		margin: auto;
+        	}
+        	
+        	body .LoginForm table {
+        		position: center;
+        		border: 2px solid;
+        		margin: auto;
+        	}
+        </style>
     </head>
 
     <body>
@@ -15,7 +33,7 @@
     			
     			<tr>
     				<td> <label th:text = "Password"> </label> </td>
-    				<td> <input type = "text" th:field="*{password}"/> </td>
+    				<td> <input type = "password" th:field="*{password}"/> </td>
     				<td th:if="${#fields.hasErrors('password')}" th:errors="*{password}"> </td>
     			</tr>
     		</table>

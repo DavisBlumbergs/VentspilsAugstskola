@@ -9,7 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -21,18 +20,18 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long u_id;
 	
-	@Column(name = "Username")
+	@Column(name = "username")
 	@Size(min = 3, max = 15)
-	@NotNull
 	private String username;
 	
-	@Column(name = "Password")
-	@NotNull
+	@Column(name = "password")	
 	@Size(min = 8,max = 32)
 	private String password;
 	
-	@Column(name = "isAdmin")
-	private boolean role;
+	@Column(name = "Role")
+	public String role;
+	
+	private boolean enabled;
 	
 	@Valid
 	@OneToOne
@@ -48,15 +47,17 @@ public class User {
 		this.password = password;
 		this.person = person;
 		
-		this.role = false;
+		this.role = "ROLE_ADMIN";
+		this.enabled = true;
 	}
 	
 	public User(String username, String password, Person person, boolean role) {
 		this.username = username;
 		this.password = password;
 		this.person = person;
+		this.enabled = true;
 		
-		this.role = role;
+		this.role = "ROLE_USER";
 	}
 
 	public Long getU_id() {
@@ -71,6 +72,15 @@ public class User {
 		return username;
 	}
 
+	
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -83,11 +93,11 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean getRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(boolean isAdmin) {
+	public void setRole(String isAdmin) {
 		this.role = isAdmin;
 	}
 
@@ -98,6 +108,5 @@ public class User {
 	public void setPerson(Person person) {
 		this.person = person;
 	}
-	
-	
+
 }
