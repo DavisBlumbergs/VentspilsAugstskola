@@ -33,17 +33,16 @@ resource "aws_instance" "instance" {
       "sudo amazon-linux-extras install docker -y",
       "sudo usermod -a -G docker ec2-user",
       "sudo curl -L https://github.com/docker/compose/releases/download/1.20.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose",
-      "sudo chmod 777 /usr/local/bin/docker-compose",
+      "sudo usermod -a -G docker-compose ec2-user",
       "cd /home/ec2-user/",
       "git clone https://DavisBlumbergs:Iddqdidqkfa1@github.com/DavisBlumbergs/VentspilsAugstskola.git",
-      "sudo chmod 777 /home/ec2-user/VentspilsAugstskola/demo/",
       "cd VentspilsAugstskola",
       "git checkout web",
       "cd demo",
       "sudo systemctl start docker.service",
       "echo gonna try again",
-      "/usr/local/bin/docker-compose create",
-      "/usr/local/bin/docker-compose start"
+      "docker-compose create",
+      "docker-compose start"
     ]
   }
 }
