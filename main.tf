@@ -28,6 +28,7 @@ resource "aws_instance" "instance" {
       private_key = file("/var/lib/jenkins/workspace/secret.pem")
     }
     inline = [
+      "whoami",
       "sudo yum install git -y",
       "sudo amazon-linux-extras install docker -y",
       "sudo usermod -a -G docker ec2-user",
