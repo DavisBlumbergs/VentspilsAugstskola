@@ -13,7 +13,7 @@
 	<version>0.1</version>
 	<name>demo</name>
 	<description>D.Blumbergs Qualification Project</description>
-
+	<packaging>jar</packaging>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>

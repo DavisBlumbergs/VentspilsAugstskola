@@ -30,7 +30,7 @@ public class AdminProductController {
 	@GetMapping("/addProduct")
 	public String addProductGet(Product product, Model model,Principal principal) {
 		model.addAttribute("types", ProductType.values());
-		
+		model.addAttribute("principal", principal);
 		return "admin/product/addProduct";
 	}
 	@PostMapping("/addProduct")
@@ -64,6 +64,7 @@ public class AdminProductController {
 	@GetMapping("/selectProductDelete")
 	public String deleteProductGet(Product product, Model model,Principal principal) {
 		model.addAttribute("allProducts", productService.selectAll());
+		model.addAttribute("principal", principal);
 		return "admin/product/selectProductDelete";
 	}
 	@PostMapping("/selectProductDelete")
@@ -76,6 +77,7 @@ public class AdminProductController {
 	@GetMapping(value = "/selectProductUpdate")
 	public String selectProductToUpdateGet(Product product, Model model,Principal principal) {
 		model.addAttribute("allProducts", productService.selectAll());	
+		model.addAttribute("principal", principal);
 		return "admin/product/selectProductUpdate";
 	}
 	@PostMapping(value = "/selectProductUpdate")

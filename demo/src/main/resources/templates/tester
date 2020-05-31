@@ -1,0 +1,98 @@
+version: '3'
+
+services:
+  store-database:
+    restart: always
+    container_name: WebStore-Database
+    image: mysql/mysql-server:5.7
+    environment:
+      MYSQL_DATABASE: Store-Database
+      MYSQL_ROOT_PASSWORD: 29426030
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=29426030--execute \"SHOW DATABASES;\""
+      interval: 2s
+      timeout: 20s
+      retries: 10
+    expose:
+    - "3306"
+
+  webstore-system:
+    depends_on:
+    - store-database
+    build: ./
+    expose:
+    - "8080"
+    ports:
+    - "8080:8080"
+    volumes:
+    - .:/app
+    - ~/.m2:/root/.m2
+    working_dir: /app
+    command: mvn clean spring-boot:run
+    environment:
+    - WAIT_HOSTS:mysql:3306
+    
+    version: '3'
+
+services:
+  store-database:
+    container_name: WebStore-Database
+    image: mysql/mysql-server:5.7
+    environment:
+      MYSQL_DATABASE: Store-Database
+      MYSQL_ROOT_PASSWORD: 29426030
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - 3306:3306
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=29426030--execute \"SHOW DATABASES;\""
+      interval: 2s
+      timeout: 20s
+      retries: 10
+  webstore-system:
+    build: ./
+    working_dir: /demo
+    volumes:
+      - .:/app
+      - ~/.m2:/root/.m2
+    ports:
+      - 8080:8080
+    environment:
+      - DATABASE_HOST=store-database
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=29426030
+      - DATABASE_NAME=Store-Database
+      - DATABASE_PORT=3306
+    depends_on:
+      - store-database 
+    command: mvn clean spring-boot:run
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      webstore-system:
+    depends_on:
+      - store-database
+    build: .
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/Store-Database
+      SPRING_DATASOURCE_USERNAME: root 
+      SPRING_DATASOURCE_PASSWORD: 29426030
+    command: mvn clean spring-boot:run
+    networks:
+      - spring-boot-mysql-network   

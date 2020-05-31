@@ -7,6 +7,8 @@
 	</head>
 	
 	<body>
+	<nav th:replace="/admin/adminfragments::navigation">navigation</nav>
+	
 		<div class="container">
 			<div class ="header">
 				<h1> Delete Person </h1>
@@ -25,7 +27,16 @@
 					<button type = "submit" value = "Submit">Delete</button>
 				</form>
 			</div>
-			
+						<form th:if="${principal}" th:action="@{/logout}" method="post" >
+
+    <button type="submit" class="btn btn-primary mb-2">Sing out</button>
+
+</form>
+<form th:unless="${principal}" th:action="@{/login}" method="post" >
+
+    <button type="submit" class="btn btn-primary mb-2">Sing in</button>
+
+</form>	
 		</div>
 	</body>
 	

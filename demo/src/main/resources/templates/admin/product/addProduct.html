@@ -23,7 +23,7 @@
     </head>
 
     <body>
-    
+    <nav th:replace="/admin/adminfragments::navigation">navigation</nav>
     	<form action="#" th:action="@{/admin/addProduct}" th:object="${product}" method = "post">
     		<table border = "1">
     		
@@ -85,6 +85,16 @@
     			
 			<button type="submit" value="Submit">Submit</button>
     	</form>
+    			    			<form th:if="${principal}" th:action="@{/logout}" method="post" >
+
+    <button type="submit" class="btn btn-primary mb-2">Sing out</button>
+
+</form>
+<form th:unless="${principal}" th:action="@{/login}" method="post" >
+
+    <button type="submit" class="btn btn-primary mb-2">Sing in</button>
+
+</form>	
     </body>
 
 </html>
