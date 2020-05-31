@@ -33,18 +33,12 @@ resource "aws_instance" "instance" {
       "sudo usermod -a -G docker ec2-user",
       "sudo curl -L https://github.com/docker/compose/releases/download/1.20.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose",
       "sudo chmod +x /usr/local/bin/docker-compose",
-      "sudo service docker start",
-      "pwd",
-      "docker info",
       "cd /home/ec2-user/",
       "git clone https://DavisBlumbergs:Iddqdidqkfa1@github.com/DavisBlumbergs/VentspilsAugstskola.git",
       "cd VentspilsAugstskola",
       "git checkout web",
       "cd demo",
-      "echo starting the service",
-      "sudo service docker start",
-      "sudo service docker status",
-      "docker-compose up"
+      "/usr/local/bin/docker-compose up"
     ]
   }
 }
