@@ -5,4 +5,4 @@ Terraform konfiguracija atrodama 'branch: Terraform'
 Web sistēmas kods atrodams 'bracnh: web' - Šeit atrodama arī Docker konfigurācija.
 
 
-Web sistēmu iespējams darbināt, ja tiek darbināts Terraform konfigurācijas kods, kas izveidos nepieciešamo MySQL datubāzes serveri.
+Web sistēmu iespējams darbināt, ja tiek darbināts Docker konfigurācijas kods, kas izveidos nepieciešamo MySQL datubāzes serveri.
