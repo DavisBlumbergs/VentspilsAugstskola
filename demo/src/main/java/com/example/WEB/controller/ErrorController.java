@@ -20,6 +20,6 @@ public class ErrorController {
             model.addAttribute("principal", principal);
         }
 
-        return "accessdenied";
+        return "accessDenied";
     }
 }
