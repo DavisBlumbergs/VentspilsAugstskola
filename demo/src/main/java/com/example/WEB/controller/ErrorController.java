@@ -11,10 +11,13 @@ public class ErrorController {
 
     @GetMapping("/accessdenied")
     public String accessDenied(Principal principal, Model model){
+    	model.addAttribute("principal", principal);
         if(principal != null){
-            model.addAttribute("msg",  principal.getName() + ", you are banned!");
+            model.addAttribute("msg",  principal.getName() + ", you are not allowed!");
+            model.addAttribute("principal", principal);
         } else{
             model.addAttribute("msg", "Access denied!");
+            model.addAttribute("principal", principal);
         }
 
         return "accessdenied";

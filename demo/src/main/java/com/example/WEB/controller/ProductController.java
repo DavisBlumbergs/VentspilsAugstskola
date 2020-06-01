@@ -43,22 +43,17 @@ public class ProductController {
 	}
 	
 	@GetMapping(value = "/selectCategory/{type}")
-	public String viewProductCategoryGet(@PathVariable(name = "type") ProductType type,Product product, Model model) {
+	public String viewProductCategoryGet(@PathVariable(name = "type") ProductType type,Product product, Model model,Principal principal) {
 		model.addAttribute("products", productRepo.findByProductType(type));
+		model.addAttribute("principal", principal);
 		return "public/product/viewCategory";
 	}
 	
 	
 	@PostMapping("/allProducts")
-	public String listAllProductsPost(Product product, Model model) {	
+	public String listAllProductsPost(Product product, Model model,Principal principal) {
+		model.addAttribute("principal", principal);
 		return "redirect:/products/allProducts/";
 	}
-	
-	@GetMapping(value = "/product/{id}")
-	public String listProduct(Product product, Model model) {
-		return null;
-	}
-	
-	
 
 }

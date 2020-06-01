@@ -23,6 +23,8 @@
     </head>
 
     <body>
+<nav th:replace="/admin/userfragments::navigation">navigation</nav>
+<nav th:replace="/admin/adminfragments::navigation">navigation</nav>
     	<div class = "LoginForm">
 	    	<form action="#" th:action="@{/login}" th:object="${user}" method="post">
 	    		<table border="1">

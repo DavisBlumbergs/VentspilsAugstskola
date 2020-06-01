@@ -23,7 +23,6 @@ public class UserServImpl implements UserServ{
 		if(user == null || userRepo.existsByUsername(user.getUsername())) {
 			return false;
 		}
-		
 		userRepo.save(user);
 		return true;
 	}

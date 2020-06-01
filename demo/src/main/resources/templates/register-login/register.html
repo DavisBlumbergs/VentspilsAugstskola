@@ -23,6 +23,9 @@
     </head>
 
     <body>
+<nav th:replace="/admin/userfragments::navigation">navigation</nav>
+<nav th:replace="/admin/adminfragments::navigation">navigation</nav>
+
     	<form action="#" th:action="@{/register}" th:object="${user}" method = "post">
     		<table border = "1">
     			<tr>

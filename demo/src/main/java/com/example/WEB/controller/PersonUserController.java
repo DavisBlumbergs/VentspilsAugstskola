@@ -1,6 +1,7 @@
 package com.example.WEB.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 
 import javax.validation.Valid;
 
@@ -38,7 +39,6 @@ public class PersonUserController {
 	@GetMapping("/register")
 	public String register(User user, Model model) {
 		model.addAttribute("types", Gender.values());
-		
 		return "register-login/register";
 	}
 	
@@ -48,14 +48,12 @@ public class PersonUserController {
 		if(userRepo.findByUsername(user.getUsername()) != null) {
 			model.addAttribute("types", Gender.values());
 			res.addError(new FieldError("user", "username", "this username already exists"));
-			
 			return "register-login/register";
 		}
 		
 		if(personRepo.existsByEmail(user.getPerson().getEmail())) {
 			model.addAttribute("types", Gender.values());
 			res.addError(new FieldError("user", "person.email", "this e-mail is already taken"));
-			
 			return "register-login/register";
 		}
 		

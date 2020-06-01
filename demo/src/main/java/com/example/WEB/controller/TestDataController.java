@@ -42,17 +42,17 @@ public class TestDataController {
 	
 	@GetMapping("/test")
 	public String test(User user, Model model,Principal principal) {
-		Person adminPerson = new Person("Davis", "Blumbergs",24,Gender.Male,"Latvia","davisblumb@gmail.com");
+		model.addAttribute("principal", principal);
+		Person adminPerson = new Person("Davis", "Blumbergs",24,Gender.Male,"Latvia","s8_blumb_da@venta.lv");
 		personService.addNewPerson(adminPerson);
-
 		
-		User admin = new User("admininins", "administrator", adminPerson);
+		User admin = new User("admin", "administrator", adminPerson);
 		userService.addNewUser(admin);
 		
-		Person userPerson = new Person("Raitis", "Brasmanis",25,Gender.Male,"Latvia", "maxcape@inbox.lv");
+		Person userPerson = new Person("Valters", "Krasmanis",25,Gender.Male,"Latvia", "valcha@inbox.lv");
 		personService.addNewPerson(userPerson);
 		
-		User users = new User("useritis","userstrator", userPerson,true);
+		User users = new User("user","useruser", userPerson,true);
 		userService.addNewUser(users);
 
 		Product maika1 = new Product("T-krekls", ProductType.T_Shirt, "Black", 15, "koks", "Maika ar piedurknem, Made in Indonesia");
@@ -63,8 +63,10 @@ public class TestDataController {
 		productService.addNewProduct(maika2);
 		productService.addNewProduct(maika3);
 		productService.addNewProduct(maika4);
-		Product pants = new Product("Bikses", ProductType.Pants, 13, "labais");
-		productService.addNewProduct(pants);
+		Product pants1 = new Product("Bikses", ProductType.Pants, 13, "labais");
+		Product pants2 = new Product("Bikshels", ProductType.Pants, 10, "pusgaras");
+		productService.addNewProduct(pants1);
+		productService.addNewProduct(pants2);
 		
 		
 		System.out.println(principal);
