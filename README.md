@@ -6,3 +6,9 @@ Web sistēmas kods atrodams 'bracnh: web' - Šeit atrodama arī Docker konfigur�
 
 
 Web sistēmu iespējams darbināt, ja tiek darbināts Docker konfigurācijas kods, kas izveidos nepieciešamo MySQL datubāzes serveri.
+
+Web sistēmas lietotāji:
+user: admin | password: administrator
+user: user | password: useruser
+
+Sistēmā ir ievietoti produkti kategorijās 'Pants' & 'T-Shirt'.
