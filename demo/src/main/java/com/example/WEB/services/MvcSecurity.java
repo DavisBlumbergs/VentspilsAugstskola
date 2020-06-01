@@ -13,7 +13,7 @@ public class MvcSecurity implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-    	registry.addViewController("/accessdenied").setViewName("test");	
+    	registry.addViewController("/accessdenied").setViewName("accessDenied");	
     	registry.addViewController("/login").setViewName("login");
     }
 }
