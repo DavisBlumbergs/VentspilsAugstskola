@@ -46,14 +46,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     		.antMatchers("/products/**").hasAnyRole("ADMIN","USER")
     		.antMatchers("/admin/**").hasRole("ADMIN")
     		.anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll().and().logout();
-    	
-    	
-    	/*
-        http.authorizeRequests().antMatchers("/", "/register","/accessdenied","/showevents", "/test").permitAll().antMatchers("/admin/**").hasRole("ADMIN").antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
-                .anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll().and().logout()
-                .permitAll();
+
         http.exceptionHandling().accessDeniedPage("/accessdenied");
-        */
     }
     
 }
