@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Access denied</title>
+</head>
+<body onload="javascript:timedRedirect()">
+<h2>You have no rights to access this page</h2>
+<span th:text="${msg}" style="color: red;">Custom message</span>
+
+
+<script type="text/javascript">
+    window.location.href = "/test";
+</script>
+</body>
+</html>
